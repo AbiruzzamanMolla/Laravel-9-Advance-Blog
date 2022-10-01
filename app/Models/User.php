@@ -42,4 +42,17 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'is_admin' => 'boolean'
     ];
+
+    protected $appends = [
+        'image_url'
+    ];
+
+    public function getImageUrlAttribute()
+    {
+        if (is_null($this->image)) {
+            return asset('backend/images/user/form-user.png');
+        }
+
+        return asset($this->image);
+    }
 }
