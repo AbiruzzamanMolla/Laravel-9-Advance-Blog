@@ -42,7 +42,26 @@
             {{-- <!-- start of mobile-nav --> --}}
             @include('frontend.layouts.includes.mobilenav')
             {{-- <!-- end of mobile-nav --> --}}
+            <div class="container {{ request()->routeIs('website.index') ? 'pt-4 mt-5' : 'py-4 my-5' }}">
+            @if(!request()->routeIs('website.index'))
+            <div class="row">
+                <div class="col-lg-5 col-md-8">
+                  <form class="search-form" action="#">
+                    <div class="input-group">
+                      <input type="search" class="form-control bg-transparent shadow-none rounded-0"
+                        placeholder="Search here">
+                      <div class="input-group-append">
+                        <button class="btn" type="submit">
+                          <span class="fas fa-search"></span>
+                        </button>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            @endif
             @yield('content')
+            </div>
             {{-- <!-- start of footer --> --}}
             @include('frontend.layouts.includes.footer')
             {{-- <!-- end of footer --> --}}

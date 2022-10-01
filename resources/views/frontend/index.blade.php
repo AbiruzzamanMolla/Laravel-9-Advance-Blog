@@ -1,7 +1,6 @@
 @extends('frontend.layouts.app')
 @section('title') Home Page @endsection
 @section('content')
-<div class="container pt-4 mt-5">
     <div class="row justify-content-between">
         <div class="col-lg-7">
             <div class="card post-item bg-transparent border-0 mb-5">
@@ -90,7 +89,6 @@
         </div>
         @include('frontend.layouts.includes.rightsidenav')
     </div>
-</div>
 @endsection
 
 @push('style')

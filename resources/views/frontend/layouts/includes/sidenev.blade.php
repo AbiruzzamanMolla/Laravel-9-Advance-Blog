@@ -1,20 +1,19 @@
 <aside>
     <div class="sidenav position-sticky d-flex flex-column justify-content-between">
-        <a class="navbar-brand" href="index.html" class="logo">
-            <img src="images/logo.png" alt="">
+        <a class="navbar-brand" href="{{ route('website.index') }}" class="logo">
+            <img src="{{ asset('frontend/images/logo.png') }}" alt="">
         </a>
         <!-- end of navbar-brand -->
-
         <div class="navbar navbar-dark my-4 p-0 font-primary">
             <ul class="navbar-nav w-100">
-                <li class="nav-item active">
-                    <a class="nav-link text-white px-0 pt-0" href="index.html">Home</a>
+                <li class="nav-item {{ request()->routeIs('website.index') ? 'active' : '' }}">
+                    <a class="nav-link text-white px-0 pt-0" href="{{ route('website.index') }}">Home</a>
                 </li>
-                <li class="nav-item ">
-                    <a class="nav-link text-white px-0" href="about.html">About</a>
+                <li class="nav-item {{ request()->routeIs('website.about') ? 'active' : '' }}">
+                    <a class="nav-link text-white px-0" href="{{ route('website.about') }}">About</a>
                 </li>
-                <li class="nav-item ">
-                    <a class="nav-link text-white px-0" href="contact.html">Contact</a>
+                <li class="nav-item {{ request()->routeIs('website.contact') ? 'active' : '' }}">
+                    <a class="nav-link text-white px-0" href="{{ route('website.contact') }}">Contact</a>
                 </li>
                 <li class="nav-item  accordion">
                     <div id="drop-menu" class="drop-menu collapse">
