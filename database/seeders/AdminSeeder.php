@@ -15,22 +15,35 @@ class AdminSeeder extends Seeder
      */
     public function run()
     {
+        // get instance of admin role
+        $roleAdmin = config('roles.models.role')::where('name', '=', 'Admin')->first();
+        // get instance of user role
+        $roleUser = config('roles.models.role')::where('name', '=', 'User')->first();
+        // get permissions
+        $permissions = config('roles.models.permission')::all();
         //admin id
-        User::create([
+        $admin = User::create([
             'name' => 'Admin',
             'email' => 'admin@mail.com',
             'password' => bcrypt('password'),
             'is_admin' => true,
             'email_verified_at' => now()
         ]);
+        // assign admin role
+        $admin->attachRole($roleAdmin);
+        foreach ($permissions as $permission) {
+            $admin->attachPermission($permission);
+        }
 
         //user id
-        User::create([
+        $user = User::create([
             'name' => 'Abir',
             'email' => 'user@mail.com',
             'password' => bcrypt('password'),
             'is_admin' => false,
             'email_verified_at' => now()
         ]);
+        // assign user role
+        $user->attachRole($roleUser);
     }
 }
