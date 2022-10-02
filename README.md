@@ -5,6 +5,6 @@
 - [x] install auth
 - [x] scafold backend
 - [x] role and permissions package
-- [ ] Admin crud
+- [x] Admin crud
 - [ ] post crud
 - [ ] pages crud
