@@ -15,6 +15,9 @@ return new class extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             $table->string('image')->nullable()->after('is_admin');
+            $table->string('bio')->nullable()->after('image');
+            $table->string('phone')->nullable()->after('email');
+            $table->string('country')->nullable()->after('bio');
         });
     }
 

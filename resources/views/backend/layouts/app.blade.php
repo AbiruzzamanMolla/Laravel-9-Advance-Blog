@@ -11,6 +11,7 @@
         href="{{ asset('backend/images/favicon.png') }}">
     <!-- Custom Stylesheet -->
     <link href="{{ asset('backend/css/style.css') }}" rel="stylesheet">
+    <link href="{{ asset('backend/plugins/bootstrap-icons/font/bootstrap-icons.css') }}" rel="stylesheet">
     @stack('style')
     @if(request()->routeIs('laravelroles*'))
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"

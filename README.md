@@ -1,7 +1,10 @@
 ## ToDo
 
 - [x] Install Laravel and setup database
-- [ ] Scafold frontend
-- [ ] install auth
-- [ ] scafold backend
-- [ ] role and permissions package
+- [x] Scafold frontend
+- [x] install auth
+- [x] scafold backend
+- [x] role and permissions package
+- [ ] Admin crud
+- [ ] post crud
+- [ ] pages crud
