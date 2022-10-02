@@ -22,31 +22,41 @@ Profile
                     </div>
 
                     <div class="row mb-5">
-                        <div class="col">
+                        <div class="col-md-6 col-sm-12">
                             <div class="card card-profile text-center">
                                 <span class="mb-1 text-primary"><i class="bi bi-plus-circle"></i></span>
-                                <h3 class="mb-0">263</h3>
+                                <h3 class="mb-0">{{ $admin->created_at->diffForHumans() }}</h3>
                                 <p class="text-muted px-4">Joined</p>
                             </div>
                         </div>
-                        <div class="col">
+                        <div class="col-md-6 col-sm-12">
                             <div class="card card-profile text-center">
                                 <span class="mb-1 text-warning"><i class="bi bi-arrow-repeat"></i></span>
-                                <h3 class="mb-0">263</h3>
+                                <h3 class="mb-0">{{ $admin->updated_at->diffForHumans() }}</h3>
                                 <p class="text-muted">Last Updated</p>
                             </div>
                         </div>
-                        <div class="col-12 text-center">
-                            <a href="{{ route('admin.profile.edit') }}">
-                                <button class="btn btn-success px-5 text-white">Edit Profile</button>
+                        <div class="col-md-6 col-sm-12 text-center">
+                            @permission('edit.admin')
+                                <a href="{{ route('admin.profile.edit') }}">
+                                    <button class="btn btn-success px-5 text-white">Edit Profile</button>
+                                </a>
+                            @endpermission
+                        </div>
+                        <div class="col-md-6 col-sm-12 text-center">
+                            @permission('update.admin.pass')
+                            <a href="{{ route('admin.profile.edit.password') }}">
+                                <button class="btn btn-warning px-5 text-white">Edit Password</button>
                             </a>
+                            @endpermission
                         </div>
                     </div>
 
                     <h4>About Me</h4>
                     <p class="text-muted">{{ $admin->bio }}</p>
                     <ul class="card-profile__info">
-                        <li class="mb-1"><strong class="text-dark mr-4">Mobile</strong> <span>{{ $admin->phone }}</span></li>
+                        <li class="mb-1"><strong class="text-dark mr-4">Mobile</strong>
+                            <span>{{ $admin->phone }}</span></li>
                         <li><strong class="text-dark mr-4">Email</strong> <span>{{ $admin->email }}</span></li>
                     </ul>
                 </div>

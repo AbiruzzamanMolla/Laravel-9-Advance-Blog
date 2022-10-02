@@ -42,6 +42,30 @@ class PermissionsTableSeeder extends Seeder
                 'description' => 'Can delete users',
                 'model'       => 'Permission',
             ],
+            [
+                'name'        => 'Can View Admin',
+                'slug'        => 'view.admin',
+                'description' => 'Admin',
+                'model'       => 'Permission',
+            ],
+            [
+                'name'        => 'Can Edit Admin',
+                'slug'        => 'edit.admin',
+                'description' => 'Admin',
+                'model'       => 'Permission',
+            ],
+            [
+                'name'        => 'Can update Admin',
+                'slug'        => 'update.admin',
+                'description' => 'Admin',
+                'model'       => 'Permission',
+            ],
+            [
+                'name'        => 'Can Change Password',
+                'slug'        => 'update.admin.pass',
+                'description' => 'Admin',
+                'model'       => 'Permission',
+            ],
         ];
 
         /*

@@ -159,26 +159,16 @@
                         <span class="activity active"></span>
                         <img src="{{ auth()->user()->image_url }}" height="40" width="40" alt="">
                     </div>
-                    <div class="drop-down dropdown-profile   dropdown-menu">
+                    <div class="drop-down dropdown-profile dropdown-menu">
                         <div class="dropdown-content-body">
                             <ul>
                                 <li>
-                                    <a href="app-profile.html"><i class="icon-user"></i>
-                                        <span>Profile</span></a>
+                                    <a href="{{ route('admin.profile.index') }}"><i class="icon-user"></i>
+                                        <span>Profile</span><span class="text-red"> ({{ auth()->user()->name }})</span></a>
                                 </li>
-                                <li>
-                                    <a href="email-inbox.html"><i class="icon-envelope-open"></i>
-                                        <span>Inbox</span>
-                                        <div class="badge gradient-3 badge-pill badge-primary">3</div>
-                                    </a>
+                                <li><a href="{{ route('admin.profile.edit.password') }}"><i class="icon-key"></i> <span>Update Password</span></a>
                                 </li>
-
-                                <hr class="my-2">
-                                <li>
-                                    <a href="page-lock.html"><i class="icon-lock"></i> <span>Lock
-                                            Screen</span></a>
-                                </li>
-                                <li><a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout').submit();"><i class="icon-key"></i> <span>Logout</span></a>
+                                <li><a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout').submit();"><i class="bi bi-power"></i> <span>Logout</span></a>
                                 </li>
                                 <form method="POST" action="{{ route('logout') }}" id="logout">
                                     @csrf

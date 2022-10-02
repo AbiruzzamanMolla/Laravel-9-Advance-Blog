@@ -108,9 +108,7 @@ Edit Profile
 @endpush
 @push('scripts')
     <script src="{{ asset('backend/plugins/dropify/dropify.min.js') }}"></script>
-
     <script>
         $('.dropify').dropify();
-
     </script>
 @endpush

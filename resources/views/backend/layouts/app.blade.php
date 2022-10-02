@@ -12,16 +12,12 @@
     <!-- Custom Stylesheet -->
     <link href="{{ asset('backend/css/style.css') }}" rel="stylesheet">
     <link href="{{ asset('backend/plugins/bootstrap-icons/font/bootstrap-icons.css') }}" rel="stylesheet">
+    <link href="{{ asset('backend/plugins/sweetalert2/dist/sweetalert2.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('backend/plugins/toastr/css/toastr.min.css') }}" rel="stylesheet">
     @stack('style')
     @if(request()->routeIs('laravelroles*'))
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
             integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-            integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">
-        </script>
-        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
-            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous">
-        </script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
             integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
         </script>
@@ -135,7 +131,35 @@
     <script src="{{ asset('backend/js/custom.min.js') }}"></script>
     <script src="{{ asset('backend/js/settings.js') }}"></script>
     <script src="{{ asset('backend/js/gleek.js') }}"></script>
-    <script src="j{{ asset('backend/s/styleSwitcher.js') }}"></script>
+    <script src="{{ asset('backend/s/styleSwitcher.js') }}"></script>
+    <script src="{{ asset('backend/plugins/sweetalert2/dist/sweetalert2.min.js') }}"></script>
+    <script src="{{ asset('backend/plugins/toastr/js/toastr.min.js') }}"></script>
+    <script>
+        @if (Session::has('success'))
+            toastr.success("{{ Session::get('success') }}", 'Success!')
+        @elseif (Session::has('warning'))
+            toastr.warning("{{ Session::get('warning') }}", 'Warning!')
+        @elseif (Session::has('error'))
+            toastr.error("{{ Session::get('error') }}", 'Error!')
+        @endif
+        // toast config
+        toastr.options = {
+            "closeButton": true,
+            "debug": false,
+            "newestOnTop": true,
+            "progressBar": true,
+            "positionClass": "toast-top-right",
+            "preventDuplicates": true,
+            "onclick": null,
+            "showDuration": "300",
+            "hideDuration": "1000",
+            "timeOut": "5000",
+            "extendedTimeOut": "1000",
+            "showEasing": "swing",
+            "hideEasing": "linear",
+            "hideMethod": "fadeOut"
+        }
+        </script>
     @stack('scripts')
 
 </body>
