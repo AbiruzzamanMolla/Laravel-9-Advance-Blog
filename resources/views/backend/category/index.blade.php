@@ -3,8 +3,15 @@
 Category
 @endsection
 @section('breadcrumb')
+@if(request()->routeIs('admin.categories.edit'))
+<li class="breadcrumb-item active"><a href="{{ route('admin.categories.index') }}">Category</a>
+</li>
+<li class="breadcrumb-item active"><a href="javascript:void(0)">Edit Category</a>
+</li>
+@else
 <li class="breadcrumb-item active"><a href="javascript:void(0)">Category</a>
 </li>
+@endif
 @endsection
 @section('content')
 <div class="container-fluid">

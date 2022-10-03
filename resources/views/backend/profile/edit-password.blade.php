@@ -3,6 +3,8 @@
 Edit Password
 @endsection
 @section('breadcrumb')
+<li class="breadcrumb-item active"><a href="{{ route('admin.profile.index') }}">Profile</a>
+</li>
 <li class="breadcrumb-item active"><a href="javascript:void(0)">Edit Password</a>
 </li>
 @endsection
