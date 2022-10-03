@@ -6,5 +6,21 @@
 - [x] scafold backend
 - [x] role and permissions package
 - [x] Admin crud
+- [x] Category CRUD
+  - [x] id
+  - [x] title
+  - [x] slug
+- [ ] Tags CRUD
+  - [ ] id
+  - [ ] title
+  - [ ] slug
 - [ ] post crud
+  - [ ] id
+  - [ ] title
+  - [ ] slug
+  - [ ] category
+  - [ ] tags
+  - [ ] short body
+  - [ ] body
 - [ ] pages crud
+- [ ] site settings

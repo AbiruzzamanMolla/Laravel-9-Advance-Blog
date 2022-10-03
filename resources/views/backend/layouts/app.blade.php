@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>@yield('title', 'Home') - 9 Blog</title>
+    <title>@yield('title', 'Home') - Laravel 9 Blog</title>
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16"
         href="{{ asset('backend/images/favicon.png') }}">

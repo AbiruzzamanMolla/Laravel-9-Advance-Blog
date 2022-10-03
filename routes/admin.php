@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Backend\AdminController;
+use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\PostController;
 use Illuminate\Support\Facades\Route;
 
@@ -15,7 +16,10 @@ Route::middleware('auth','is_admin')->name('admin.')->prefix('admin')->group(fun
         Route::put('/update/password', 'updateProfilePassword')->name('update.password');
     });
     // post routes
-    Route::resource('posts', PostController::class)->parameters([
-        'post' => 'posts:slug',
+    Route::resource('posts', PostController::class)->scoped([
+        'post' => 'slug',
     ]);
+    Route::resource('categories', CategoryController::class)->scoped([
+        'category' => 'slug',
+    ])->except('show', 'create');
 });
