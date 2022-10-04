@@ -4,13 +4,13 @@ Tag
 @endsection
 @section('breadcrumb')
 @if(request()->routeIs('admin.tag.edit'))
-<li class="breadcrumb-item active"><a href="{{ route('admin.tags.index') }}">Tag</a>
-</li>
-<li class="breadcrumb-item active"><a href="javascript:void(0)">Edit Tag</a>
-</li>
+    <li class="breadcrumb-item"><a href="{{ route('admin.tags.index') }}">Tag</a>
+    </li>
+    <li class="breadcrumb-item active"><a href="javascript:void(0)">Edit Tag</a>
+    </li>
 @else
-<li class="breadcrumb-item active"><a href="javascript:void(0)">Tag</a>
-</li>
+    <li class="breadcrumb-item active"><a href="javascript:void(0)">Tag</a>
+    </li>
 @endif
 @endsection
 @section('content')
@@ -89,12 +89,13 @@ Tag
                                 @enderror
                             </div>
                             <div class="form-group">
-                                <input type="submit" class="btn btn-danger" value="Create">
+                                <button class="btn btn-success" type="submit"><i class="fa fa-plus mr-1"></i>
+                                    Create</button>
                             </div>
                         </form>
                         <p class="card-text d-inline"><small class="text-muted">Last created
                                 {{ $last_created->diffForHumans() }}</small>
-                        </p><a href="{{ URL::previous() }}" class="card-link float-right btn btn-secondary">Back</a>
+                        </p><a href="{{ URL::previous() }}" class="card-link float-right btn btn-secondary"><i class="fa fa-arrow-left mr-1"></i> Back</a>
                     </div>
                 @endif
                 @if(!empty($tagData))
@@ -116,12 +117,13 @@ Tag
                                 @enderror
                             </div>
                             <div class="form-group">
-                                <input type="submit" class="btn btn-danger" value="Update">
+                                <button class="btn btn-success" type="submit"><i class="fa fa-refresh mr-1"></i> Update</button>
                             </div>
                         </form>
-                        <p class="card-text d-inline"><small class="text-muted">Last Updated {{ $last_updated->diffForHumans() }}</small>
+                        <p class="card-text d-inline"><small class="text-muted">Last Updated
+                                {{ $last_updated->diffForHumans() }}</small>
                         </p><a href="{{ route('admin.tags.index') }}"
-                            class="card-link float-right btn btn-secondary">Create</a>
+                            class="card-link float-right btn btn-secondary"><i class="fa fa-plus mr-1"></i> Create</a>
                     </div>
                 @endif
             </div>
@@ -174,5 +176,6 @@ Tag
                 return false;
             })
         }
+
     </script>
 @endpush

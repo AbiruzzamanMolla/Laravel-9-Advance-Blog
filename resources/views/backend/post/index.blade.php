@@ -12,7 +12,8 @@ Post
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
-                    <h4 class="card-title">All Posts</h4>
+                    <h5 class="card-title card-text d-inline">All Posts</h5>
+                    <a href="{{ route('admin.posts.create') }}" class="card-link float-right btn btn-success"><i class="fa fa-plus mr-1"></i> Create</a>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
@@ -90,6 +91,7 @@ Post
                     <div class="bootstrap-pagination">
                         {{ $posts->links('vendor.pagination.bootstrap-5') }}
                     </div>
+                    <p class="card-text d-inline float-right"><small class="text-muted">Last updated {{ $last_updated->diffForHumans() }}</small></p>
                 </div>
             </div>
         </div>

@@ -13,10 +13,10 @@ function uploadImage(?object $image, string $oldImage = null){
     return $url;
 }
 
-function uploadFile($image, $path = 'files/'){
-    $fileName = $image->getClientOriginalName().'.'.$image->extension();
+function uploadFile($file, $path = 'files/'){
+    $fileName = $file->getClientOriginalName().'.'.$file->extension();
     // Folder
-    $image->move(public_path($path), $fileName);
+    $file->move(public_path($path), $fileName);
     $url = $path.$fileName;
     return $url;
 }

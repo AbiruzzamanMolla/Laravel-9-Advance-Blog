@@ -4,30 +4,19 @@ Category
 @endsection
 @section('breadcrumb')
 @if(request()->routeIs('admin.categories.edit'))
-<li class="breadcrumb-item active"><a href="{{ route('admin.categories.index') }}">Category</a>
-</li>
-<li class="breadcrumb-item active"><a href="javascript:void(0)">Edit Category</a>
-</li>
+    <li class="breadcrumb-item"><a href="{{ route('admin.categories.index') }}">Category</a>
+    </li>
+    <li class="breadcrumb-item active"><a href="javascript:void(0)">Edit Category</a>
+    </li>
 @else
-<li class="breadcrumb-item active"><a href="javascript:void(0)">Category</a>
-</li>
+    <li class="breadcrumb-item active"><a href="javascript:void(0)">Category</a>
+    </li>
 @endif
 @endsection
 @section('content')
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-8 col-sm-12">
-            {{-- <div class="card">
-                <div class="card-header bg-white">
-                    <h5 class="card-title">All Categories</h5>
-                    <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-                </div>
-                <div class="card-body">
-                    <p class="card-text">This is a wider card with supporting text and below as a natural lead-in to the additional content. This content is a little bit longer.</p>
-                    <p class="card-text d-inline"><small class="text-muted">Last updated 3 mins ago</small>
-                    </p><a href="#" class="card-link float-right"><small>Card link</small></a>
-                </div>
-            </div> --}}
             <div class="card">
                 <div class="card-header">
                     <h4 class="card-title">All Category</h4>
@@ -64,10 +53,6 @@ Category
                                                     data-token="{{ csrf_token() }}">
                                                     <i class="fa fa-close color-danger"></i>
                                                 </button>
-                                                {{-- <a href="#" class="btn btn-danger" data-toggle="tooltip"
-                                                    data-placement="top" title="" data-original-title="Delete">
-                                                    <i class="fa fa-close color-danger"></i>
-                                                </a> --}}
                                             </span>
                                         </td>
                                     </tr>
@@ -104,18 +89,20 @@ Category
                                 @enderror
                             </div>
                             <div class="form-group">
-                                <input type="submit" class="btn btn-danger" value="Create">
-                            </div>
+                                <button class="btn btn-success" type="submit"><i class="fa fa-plus mr-1"></i>
+                                    Create</button> </div>
                         </form>
                         <p class="card-text d-inline"><small class="text-muted">Last created
                                 {{ $last_created->diffForHumans() }}</small>
-                        </p><a href="{{ URL::previous() }}" class="card-link float-right btn btn-secondary">Back</a>
+                        </p><a href="{{ URL::previous() }}" class="card-link float-right btn btn-secondary"><i
+                                class="fa fa-arrow-left mr-1"></i> Back</a>
                     </div>
                 @endif
                 @if(!empty($categoryData))
                     <div class="card-body">
                         <h5 class="card-title">Edit Category</h5>
-                        <form action="{{ route('admin.categories.update', $categoryData->slug) }}"
+                        <form
+                            action="{{ route('admin.categories.update', $categoryData->slug) }}"
                             method="post">
                             @csrf
                             @method('PUT')
@@ -131,12 +118,16 @@ Category
                                 @enderror
                             </div>
                             <div class="form-group">
-                                <input type="submit" class="btn btn-danger" value="Update">
+                                <button class="btn btn-success" type="submit">
+                                    <i class="fa fa-refresh mr-1"></i>
+                                    Update
+                                </button>
                             </div>
                         </form>
-                        <p class="card-text d-inline"><small class="text-muted">Last Updated {{ $last_updated->diffForHumans() }}</small>
+                        <p class="card-text d-inline"><small class="text-muted">Last Updated
+                                {{ $last_updated->diffForHumans() }}</small>
                         </p><a href="{{ route('admin.categories.index') }}"
-                            class="card-link float-right btn btn-secondary">Create</a>
+                            class="card-link float-right btn btn-secondary"><i class="fa fa-plus mr-1"></i> Create</a>
                     </div>
                 @endif
             </div>
@@ -189,5 +180,6 @@ Category
                 return false;
             })
         }
+
     </script>
 @endpush
