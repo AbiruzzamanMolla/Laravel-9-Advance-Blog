@@ -3,6 +3,7 @@
 use App\Http\Controllers\Backend\AdminController;
 use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\PostController;
+use App\Http\Controllers\Backend\TagController;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware('auth','is_admin')->name('admin.')->prefix('admin')->group(function () {
@@ -19,7 +20,12 @@ Route::middleware('auth','is_admin')->name('admin.')->prefix('admin')->group(fun
     Route::resource('posts', PostController::class)->scoped([
         'post' => 'slug',
     ]);
+    // category routes
     Route::resource('categories', CategoryController::class)->scoped([
         'category' => 'slug',
+    ])->except('show', 'create');
+    // tag routes
+    Route::resource('tags', TagController::class)->scoped([
+        'tag' => 'slug',
     ])->except('show', 'create');
 });
