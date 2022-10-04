@@ -10,17 +10,17 @@
   - [x] id
   - [x] title
   - [x] slug
-- [ ] Tags CRUD
-  - [ ] id
-  - [ ] title
-  - [ ] slug
+- [x] Tags CRUD
+  - [x] id
+  - [x] title
+  - [x] slug
 - [ ] post crud
-  - [ ] id
-  - [ ] title
-  - [ ] slug
-  - [ ] category
-  - [ ] tags
-  - [ ] short body
-  - [ ] body
+  - [x] id
+  - [x] title
+  - [x] slug
+  - [x] category
+  - [x] tags belongs to many
+  - [x] short body
+  - [x] body
 - [ ] pages crud
 - [ ] site settings
