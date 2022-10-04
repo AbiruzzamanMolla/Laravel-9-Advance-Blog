@@ -14,7 +14,7 @@
   - [x] id
   - [x] title
   - [x] slug
-- [ ] post crud
+- [x] post crud
   - [x] id
   - [x] title
   - [x] slug
@@ -22,5 +22,10 @@
   - [x] tags belongs to many
   - [x] short body
   - [x] body
+- [ ] Updated Towster and sweetalert 2 js
+- [ ] Dynamic Frontend
+  - [ ] Show category
+  - [ ] show post
+  - [ ] show single post
 - [ ] pages crud
 - [ ] site settings
