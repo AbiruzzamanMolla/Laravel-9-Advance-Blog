@@ -20,6 +20,29 @@ class Post extends Model
         'cover'
     ];
 
+    protected $appends = [
+        'image_url'
+    ];
+
+    protected $casts = [
+        'status' => 'boolean'
+    ];
+
+    public function getImageUrlAttribute()
+    {
+        if (is_null($this->cover)) {
+            return asset('backend/images/imgs/1.jpg');
+        }
+
+        return asset($this->cover);
+    }
+
+    public function user(){
+        return $this->belongsTo(User::class);
+    }
+    public function category(){
+        return $this->belongsTo(Category::class);
+    }
     public function tags(){
         return $this->belongsToMany(Tag::class);
     }

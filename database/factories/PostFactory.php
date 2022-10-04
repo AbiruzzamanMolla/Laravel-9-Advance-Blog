@@ -21,7 +21,7 @@ class PostFactory extends Factory
     {
         $id = rand(30, 600);
         $title = $this->faker->sentence($nbWords = 5, $variableNbWords = true);
-        $image = 'https://picsum.photos/id/' . $id . '/700/600';
+        $image = 'https://loremflickr.com/320/240?random='.$id;
         return [
             'title' => $title,
             'slug' => Str::slug($title),

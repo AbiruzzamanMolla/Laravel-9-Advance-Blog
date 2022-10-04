@@ -11,6 +11,10 @@ class PostController extends Controller
 {
     public function index()
     {
+        $posts = Post::with('user:id,name', 'category', 'tags')->latest()->paginate(10);
+        return view('backend.post.index',[
+            'posts' => $posts
+        ]);
 
     }
 
