@@ -3,24 +3,30 @@
         <ul class="metismenu" id="menu">
             <li class="nav-label">Dashboard</li>
             <li
-            class="{{ request()->routeIs('admin.dashboard') ? 'active' : '' }}">
-            <a href="{{ route('admin.dashboard') }}" aria-expanded="false">
-                <i class="icon-speedometer menu-icon"></i><span class="nav-text">Dashboard</span>
-            </a>
+                class="{{ request()->routeIs('admin.dashboard') ? 'active' : '' }}">
+                <a href="{{ route('admin.dashboard') }}" aria-expanded="false">
+                    <i class="icon-speedometer menu-icon"></i><span class="nav-text">Dashboard</span>
+                </a>
             </li>
             <li class="nav-label">Website</li>
             <li
-            class="{{ request()->routeIs('admin.categories.*') ? 'active' : '' }}">
-            <a href="{{ route('admin.categories.index') }}" aria-expanded="false">
-                <i class="fa fa-th-large"></i><span class="nav-text">Category</span>
-            </a>
-        </li>
+                class="{{ request()->routeIs('admin.categories.*') ? 'active' : '' }}">
+                <a href="{{ route('admin.categories.index') }}" aria-expanded="false">
+                    <i class="fa fa-th-large"></i><span class="nav-text">Category</span>
+                </a>
+            </li>
             <li
-            class="{{ request()->routeIs('admin.posts.*') ? 'active' : '' }}">
-            <a href="{{ route('admin.posts.index') }}" aria-expanded="false">
-                <i class="fa fa-clipboard"></i><span class="nav-text">Post</span>
-            </a>
-        </li>
+                class="{{ request()->routeIs('admin.tags.*') ? 'active' : '' }}">
+                <a href="{{ route('admin.tags.index') }}" aria-expanded="false">
+                    <i class="fa fa-tags"></i><span class="nav-text">Tag</span>
+                </a>
+            </li>
+            <li
+                class="{{ request()->routeIs('admin.posts.*') ? 'active' : '' }}">
+                <a href="{{ route('admin.posts.index') }}" aria-expanded="false">
+                    <i class="fa fa-clipboard"></i><span class="nav-text">Post</span>
+                </a>
+            </li>
             <li>
                 <a class="has-arrow" href="javascript:void()" aria-expanded="false">
                     <i class="icon-speedometer menu-icon"></i><span class="nav-text">Dashboard</span>

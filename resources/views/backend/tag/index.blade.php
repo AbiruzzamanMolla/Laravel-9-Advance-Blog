@@ -1,15 +1,15 @@
 @extends('backend.layouts.app')
 @section('title')
-Category
+Tag
 @endsection
 @section('breadcrumb')
-@if(request()->routeIs('admin.categories.edit'))
-<li class="breadcrumb-item active"><a href="{{ route('admin.categories.index') }}">Category</a>
+@if(request()->routeIs('admin.tag.edit'))
+<li class="breadcrumb-item active"><a href="{{ route('admin.tags.index') }}">Tag</a>
 </li>
-<li class="breadcrumb-item active"><a href="javascript:void(0)">Edit Category</a>
+<li class="breadcrumb-item active"><a href="javascript:void(0)">Edit Tag</a>
 </li>
 @else
-<li class="breadcrumb-item active"><a href="javascript:void(0)">Category</a>
+<li class="breadcrumb-item active"><a href="javascript:void(0)">Tag</a>
 </li>
 @endif
 @endsection
@@ -17,20 +17,9 @@ Category
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-8 col-sm-12">
-            {{-- <div class="card">
-                <div class="card-header bg-white">
-                    <h5 class="card-title">All Categories</h5>
-                    <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-                </div>
-                <div class="card-body">
-                    <p class="card-text">This is a wider card with supporting text and below as a natural lead-in to the additional content. This content is a little bit longer.</p>
-                    <p class="card-text d-inline"><small class="text-muted">Last updated 3 mins ago</small>
-                    </p><a href="#" class="card-link float-right"><small>Card link</small></a>
-                </div>
-            </div> --}}
             <div class="card">
                 <div class="card-header">
-                    <h4 class="card-title">All Category</h4>
+                    <h4 class="card-title">All Tags</h4>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
@@ -44,30 +33,26 @@ Category
                                 </tr>
                             </thead>
                             <tbody>
-                                @forelse($categories as $category)
+                                @forelse($tags as $tag)
                                     <tr>
-                                        <td>{{ $category->id }}</td>
+                                        <td>{{ $tag->id }}</td>
                                         <td>
-                                            {{ $category->title }}
+                                            {{ $tag->title }}
                                         </td>
-                                        <td>{{ $category->slug }}</td>
+                                        <td>{{ $tag->slug }}</td>
                                         <td>
                                             <span>
-                                                <a href="{{ route('admin.categories.edit', $category->slug) }}"
+                                                <a href="{{ route('admin.tags.edit', $tag->slug) }}"
                                                     class="btn btn-success" data-toggle="tooltip" data-placement="top"
                                                     title="" data-original-title="Edit">
                                                     <i class="fa fa-pencil color-muted m-r-5"></i>
                                                 </a>
                                                 <button class="btn btn-danger deleteButton" data-toggle="tooltip"
                                                     data-placement="top" title="" data-original-title="Delete"
-                                                    data-url="{{ route('admin.categories.destroy', $category->slug) }}"
+                                                    data-url="{{ route('admin.tags.destroy', $tag->slug) }}"
                                                     data-token="{{ csrf_token() }}">
                                                     <i class="fa fa-close color-danger"></i>
                                                 </button>
-                                                {{-- <a href="#" class="btn btn-danger" data-toggle="tooltip"
-                                                    data-placement="top" title="" data-original-title="Delete">
-                                                    <i class="fa fa-close color-danger"></i>
-                                                </a> --}}
                                             </span>
                                         </td>
                                     </tr>
@@ -80,22 +65,22 @@ Category
                         </table>
                     </div>
                     <div class="bootstrap-pagination">
-                        {{ $categories->links('vendor.pagination.bootstrap-5') }}
+                        {{ $tags->links('vendor.pagination.bootstrap-5') }}
                     </div>
                 </div>
             </div>
         </div>
         <div class="col-md-4">
             <div class="card">
-                @if(empty($categoryData))
+                @if(empty($tagData))
                     <div class="card-body">
-                        <h5 class="card-title">Add Category</h5>
-                        <form action="{{ route('admin.categories.store') }}" method="post">
+                        <h5 class="card-title">Add Tag</h5>
+                        <form action="{{ route('admin.tags.store') }}" method="post">
                             @csrf
                             <div class="form-group">
                                 <label for="title">Title</label>
                                 <input type="text" class="form-control @error('title') is-invalid @enderror"
-                                    name="title" id="title" placeholder="Enter Category Title"
+                                    name="title" id="title" placeholder="Enter Tag Title"
                                     value="{{ old('title') }}">
                                 @error('title')
                                     <span class="invalid-feedback" role="alert">
@@ -112,18 +97,18 @@ Category
                         </p><a href="{{ URL::previous() }}" class="card-link float-right btn btn-secondary">Back</a>
                     </div>
                 @endif
-                @if(!empty($categoryData))
+                @if(!empty($tagData))
                     <div class="card-body">
-                        <h5 class="card-title">Edit Category</h5>
-                        <form action="{{ route('admin.categories.update', $categoryData->slug) }}"
+                        <h5 class="card-title">Edit Tag</h5>
+                        <form action="{{ route('admin.tags.update', $tagData->slug) }}"
                             method="post">
                             @csrf
                             @method('PUT')
                             <div class="form-group">
                                 <label for="title">Title</label>
                                 <input type="text" class="form-control @error('title') is-invalid @enderror"
-                                    name="title" id="title" placeholder="Enter Category Title"
-                                    value="{{ old('title', $categoryData->title) }}">
+                                    name="title" id="title" placeholder="Enter Tag Title"
+                                    value="{{ old('title', $tagData->title) }}">
                                 @error('title')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -135,7 +120,7 @@ Category
                             </div>
                         </form>
                         <p class="card-text d-inline"><small class="text-muted">Last Updated {{ $last_updated->diffForHumans() }}</small>
-                        </p><a href="{{ route('admin.categories.index') }}"
+                        </p><a href="{{ route('admin.tags.index') }}"
                             class="card-link float-right btn btn-secondary">Create</a>
                     </div>
                 @endif

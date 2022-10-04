@@ -14,17 +14,10 @@ class TagController extends Controller
      */
     public function index()
     {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        $tags = Tag::latest()->paginate(10);
+        $last_created = Tag::latest('created_at')
+        ->first()->created_at;
+        return view('backend.tag.index', ['tags' => $tags, 'last_created' => $last_created]);
     }
 
     /**
@@ -35,7 +28,13 @@ class TagController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'title' => 'required|unique:tags,title'
+        ]);
+
+        $created = Tag::create($request->except('_token'));
+        $created ? flashSuccess('Tag Created Successfully!') : flashError('Something went wrong!');
+        return back();
     }
 
     /**
@@ -57,7 +56,14 @@ class TagController extends Controller
      */
     public function edit(Tag $tag)
     {
-        //
+        $last_updated = Tag::latest('updated_at')
+        ->first()->updated_at;
+        $tags = Tag::latest()->paginate(10);
+        return view('backend.tag.index',[
+            'tags' => $tags,
+            'last_updated' => $last_updated,
+            'tagData' => $tag
+        ]);
     }
 
     /**
@@ -69,7 +75,14 @@ class TagController extends Controller
      */
     public function update(Request $request, Tag $tag)
     {
-        //
+        $request->validate([
+            'title' => 'required|unique:tags,title,'.$tag->id,
+        ]);
+
+        $edited = $tag->update($request->except('_token'));
+        $edited ? flashSuccess('Tag updated!') : flashSuccess('Something went wrong...');
+
+        return redirect()->route('admin.tags.edit', $tag->slug);
     }
 
     /**
@@ -80,6 +93,11 @@ class TagController extends Controller
      */
     public function destroy(Tag $tag)
     {
-        //
+        $data = $tag->delete();
+        $data ? flashSuccess('Tag Deleted!') : '';
+        return response()->json([
+            'message' => 'Tag deleted successfully!',
+            'success' => $data
+        ]);
     }
 }
