@@ -20,6 +20,7 @@ Route::middleware('auth','is_admin')->name('admin.')->prefix('admin')->group(fun
     Route::resource('posts', PostController::class)->scoped([
         'post' => 'slug',
     ]);
+    Route::post('/status/toggle', [PostController::class, 'updateStatus'])->name('posts.status');
     // category routes
     Route::resource('categories', CategoryController::class)->scoped([
         'category' => 'slug',

@@ -168,4 +168,16 @@ class PostController extends Controller
             'success' => $data
         ]);
     }
+
+    public function updateStatus(Request $request)
+    {
+        $post = Post::whereSlug($request->slug)->first();
+        $post->status = $request->status;
+        $data = $post->save();
+        $msg = $data ? 'Post Status Changed!' : 'Post Status Update Failed!';
+        return response()->json([
+            'message' => $msg,
+            'success' => $data
+        ]);
+    }
 }

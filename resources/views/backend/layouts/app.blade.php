@@ -131,17 +131,10 @@
     <script src="{{ asset('backend/js/custom.min.js') }}"></script>
     <script src="{{ asset('backend/js/settings.js') }}"></script>
     <script src="{{ asset('backend/js/gleek.js') }}"></script>
-    <script src="{{ asset('backend/s/styleSwitcher.js') }}"></script>
+    <script src="{{ asset('backend/js/styleSwitcher.js') }}"></script>
     <script src="{{ asset('backend/plugins/sweetalert2/dist/sweetalert2.min.js') }}"></script>
     <script src="{{ asset('backend/plugins/toastr/js/toastr.min.js') }}"></script>
     <script>
-        @if (Session::has('success'))
-            toastr.success("{{ Session::get('success') }}", 'Success!')
-        @elseif (Session::has('warning'))
-            toastr.warning("{{ Session::get('warning') }}", 'Warning!')
-        @elseif (Session::has('error'))
-            toastr.error("{{ Session::get('error') }}", 'Error!')
-        @endif
         // toast config
         toastr.options = {
             "closeButton": true,
@@ -149,7 +142,7 @@
             "newestOnTop": true,
             "progressBar": true,
             "positionClass": "toast-top-right",
-            "preventDuplicates": true,
+            "preventDuplicates": false,
             "onclick": null,
             "showDuration": "300",
             "hideDuration": "1000",
@@ -157,8 +150,16 @@
             "extendedTimeOut": "1000",
             "showEasing": "swing",
             "hideEasing": "linear",
+            "showMethod": "fadeIn",
             "hideMethod": "fadeOut"
         }
+        @if (Session::has('success'))
+            toastr.success("{{ Session::get('success') }}", 'Success!')
+        @elseif (Session::has('warning'))
+            toastr.warning("{{ Session::get('warning') }}", 'Warning!')
+        @elseif (Session::has('error'))
+            toastr.error("{{ Session::get('error') }}", 'Error!')
+        @endif
         </script>
     @stack('scripts')
 

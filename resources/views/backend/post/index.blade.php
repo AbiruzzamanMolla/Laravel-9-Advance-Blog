@@ -13,7 +13,8 @@ Post
             <div class="card">
                 <div class="card-header">
                     <h5 class="card-title card-text d-inline">All Posts</h5>
-                    <a href="{{ route('admin.posts.create') }}" class="card-link float-right btn btn-success"><i class="fa fa-plus mr-1"></i> Create</a>
+                    <a href="{{ route('admin.posts.create') }}"
+                        class="card-link float-right btn btn-success"><i class="fa fa-plus mr-1"></i> Create</a>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
@@ -48,21 +49,28 @@ Post
                                         </td>
                                         <td>
                                             @php
-                                                $classes = array("badge-primary", "badge-secondary", "badge-success", "badge-danger", "badge-warning", "badge-info", "badge-light", "badge-dark");
+                                                $classes = array("badge-primary", "badge-secondary", "badge-success",
+                                                "badge-danger", "badge-warning", "badge-info", "badge-light",
+                                                "badge-dark");
                                             @endphp
                                             @forelse($post->tags as $tag)
-                                            @php
-                                                $class = $classes[array_rand($classes)]
-                                            @endphp
-                                            <span class="badge badge-pill {{ $class }}">
-                                                {{ $tag->title }}
-                                            </span>
+                                                @php
+                                                    $class = $classes[array_rand($classes)]
+                                                @endphp
+                                                <span class="badge badge-pill {{ $class }}">
+                                                    {{ $tag->title }}
+                                                </span>
                                             @empty
                                                 No Tags
                                             @endforelse
                                         </td>
                                         <td>
-                                            {{ $post->status ? 'Published' : 'Draft' }}
+                                            <input class="status" type="checkbox"
+                                                {{ $post->status ? 'checked' : '' }}
+                                                data-toggle="toggle" data-on="Published" data-off="Hidded"
+                                                data-onstyle="success" data-offstyle="danger" id="status"
+                                                data-token="{{ csrf_token() }}" data-status="{{ $post->status }}"
+                                                data-slug="{{ $post->slug }}">
                                         </td>
                                         <td>
                                             <span>
@@ -91,7 +99,8 @@ Post
                     <div class="bootstrap-pagination">
                         {{ $posts->links('vendor.pagination.bootstrap-5') }}
                     </div>
-                    <p class="card-text d-inline float-right"><small class="text-muted">Last updated {{ $last_updated->diffForHumans() }}</small></p>
+                    <p class="card-text d-inline float-right"><small class="text-muted">Last updated
+                            {{ $last_updated->diffForHumans() }}</small></p>
                 </div>
             </div>
         </div>
@@ -100,7 +109,14 @@ Post
 <!-- #/ container -->
 @endsection
 
+@push('style')
+    <link href="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/css/bootstrap4-toggle.min.css"
+        rel="stylesheet">
+@endpush
+
 @push('scripts')
+    <script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script type="text/javascript">
         $(".deleteButton").click(function (e) {
             e.preventDefault();
@@ -142,6 +158,58 @@ Post
             }, function (dismiss) {
                 return false;
             })
+        }
+        // change status
+        $(".status").change(function (e) {
+            e.preventDefault();
+            var status = $(this).data('status') ? 0 : 1;
+            var token = $(this).data('token');
+            var slug = $(this).data('slug');
+            console.log(status, token, slug);
+            $.ajax({
+                type: 'POST',
+                url: '{{ route("admin.posts.status") }}',
+                data: {
+                    '_token': token,
+                    'slug': slug,
+                    'status': status,
+                },
+                dataType: 'JSON',
+                success: function (results) {
+                    if (results.success === true) {
+                        toastr.success(results.message, 'Success!')
+                    } else {
+                        swoltimer(results.message)
+                    }
+                }
+            });
+        });
+
+        function swoltimer(msg) {
+            let timerInterval
+            Swal.fire({
+                title: 'Error!',
+                html: msg,
+                type: "error",
+                icon: 'error',
+                timer: 3000,
+                timerProgressBar: true,
+                didOpen: () => {
+                    Swal.showLoading()
+                    const b = Swal.getHtmlContainer().querySelector('b')
+                    timerInterval = setInterval(() => {
+                        b.textContent = Swal.getTimerLeft()
+                    }, 100)
+                },
+                willClose: () => {
+                    clearInterval(timerInterval)
+                }
+            }).then((result) => {
+                /* Read more about handling dismissals below */
+                if (result.dismiss === Swal.DismissReason.timer) {
+                    console.log(msg)
+                }
+            });
         }
 
     </script>
