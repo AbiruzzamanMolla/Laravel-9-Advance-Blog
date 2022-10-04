@@ -14,7 +14,7 @@ function uploadImage(?object $image, string $oldImage = null){
 }
 
 function uploadFile($file, $path = 'files/'){
-    $fileName = $file->getClientOriginalName().'.'.$file->extension();
+    $fileName = $file->getClientOriginalName();
     // Folder
     $file->move(public_path($path), $fileName);
     $url = $path.$fileName;

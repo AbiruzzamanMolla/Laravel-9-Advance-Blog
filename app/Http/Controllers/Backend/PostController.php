@@ -51,7 +51,7 @@ class PostController extends Controller
         $request->validate([
             'title' => 'required|unique:posts,title',
             'category_id' => 'required',
-            'body' => 'nullable|max:5000',
+            'body' => 'nullable|max:16777215',
             'description' => 'required|max:255',
             'cover' => 'nullable|image|mimes:jpg,png,jpeg,gif,svg|max:1024',
             'tags' => 'nullable',
@@ -60,7 +60,7 @@ class PostController extends Controller
         ]);
 
         if ($request->hasFile('cover')) {
-            $cover =  uploadFile($request->cover, 'images/posts');
+            $cover =  uploadFile($request->cover, 'images/posts/');
         } else {
             $cover = null;
         }
@@ -101,7 +101,13 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        //
+        $categories = Category::all();
+        $tags = Tag::all();
+        return view('backend.post.edit',[
+            'post' => $post,
+            'categories' => $categories,
+            'tags' => $tags,
+        ]);
     }
 
     /**
@@ -113,7 +119,37 @@ class PostController extends Controller
      */
     public function update(Request $request, Post $post)
     {
-        //
+        // return $request;
+        $request->validate([
+            'title' => 'required|unique:posts,title,'.$post->id,
+            'category_id' => 'required',
+            'body' => 'nullable|max:16777215',
+            'description' => 'required|max:255',
+            'cover' => 'nullable|image|mimes:jpg,png,jpeg,gif,svg|max:1024',
+            'tags' => 'nullable',
+        ], [
+            'category_id.required' => 'You must select a category!'
+        ]);
+
+        if ($request->hasFile('cover')) {
+            deletePhoto($post->cover);
+            $cover =  uploadFile($request->cover, 'images/posts/');
+            $post->cover = $cover;
+        }
+
+        $post->title = $request->title;
+        $post->category_id = $request->category_id;
+        $post->body = $request->body;
+        $post->description = $request->description;
+
+        $posted = $post->save();
+
+        if($request->has('tags')){
+            $post->tags()->sync($request->tags);
+        }
+
+        $posted ? flashSuccess('Post Updated Successfully!') : flashError('Opps! Somethings went wrong!');
+        return redirect()->route('admin.posts.edit', $post->slug);
     }
 
     /**
@@ -124,6 +160,12 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
-        //
+        $data = $post->delete();
+        $data ? deletePhoto($post->cover) : '';
+        $data ? flashSuccess('Post Deleted!') : '';
+        return response()->json([
+            'message' => 'Post deleted successfully!',
+            'success' => $data
+        ]);
     }
 }
