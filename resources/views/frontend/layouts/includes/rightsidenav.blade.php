@@ -49,54 +49,31 @@
         <div class="mb-5 text-center">
             <h2 class="widget-title text-white d-inline-block">Featured Posts</h2>
         </div>
+        @foreach ($latest_posts as $latest_post)
         <div class="card post-item bg-transparent border-0 mb-5">
-            <a href="post-details.html">
-                <img class="card-img-top rounded-0" src="images/post/post-sm/01.png" alt="">
+            <a href="{{ route('website.post.details', $latest_post->slug) }}">
+                <img class="card-img-top rounded-0" src="{{ $latest_post->image_url }}" alt="">
             </a>
             <div class="card-body px-0">
                 <h2 class="card-title">
-                    <a class="text-white opacity-75-onHover" href="post-details.html">Excepteur ado
-                        Do minimal duis laborum Fugiat ea</a>
+                    <a class="text-white opacity-75-onHover" href="{{ route('website.post.details', $latest_post->slug) }}">{{ $latest_post->title }}</a>
                 </h2>
                 <ul class="post-meta mt-3 mb-4">
                     <li class="d-inline-block mr-3">
                         <span class="fas fa-clock text-primary"></span>
-                        <a class="ml-1" href="#">24 April, 2016</a>
+                        <a class="ml-1" href="#">{{ \Carbon\Carbon::parse($post->created_at)->format('d M, Y') }}</a>
                     </li>
                     <li class="d-inline-block">
                         <span class="fas fa-list-alt text-primary"></span>
-                        <a class="ml-1" href="#">Photography</a>
+                        <a class="ml-1" href="#">{{ $latest_post->category->title }}</a>
                     </li>
                 </ul>
-                <a href="post-details.html" class="btn btn-primary">Read More <img
-                        src="images/arrow-right.png" alt=""></a>
+                <a href="{{ route('website.post.details', $latest_post->slug) }}" class="btn btn-primary">Read More <img
+                        src="{{ asset('frontend/images/arrow-right.png') }}" alt=""></a>
             </div>
         </div>
         <!-- end of widget-post-item -->
-        <div class="card post-item bg-transparent border-0 mb-5">
-            <a href="post-details.html">
-                <img class="card-img-top rounded-0" src="images/post/post-sm/02.png" alt="">
-            </a>
-            <div class="card-body px-0">
-                <h2 class="card-title">
-                    <a class="text-white opacity-75-onHover" href="post-details.html">Excepteur ado
-                        Do minimal duis laborum Fugiat ea</a>
-                </h2>
-                <ul class="post-meta mt-3 mb-4">
-                    <li class="d-inline-block mr-3">
-                        <span class="fas fa-clock text-primary"></span>
-                        <a class="ml-1" href="#">24 April, 2016</a>
-                    </li>
-                    <li class="d-inline-block">
-                        <span class="fas fa-list-alt text-primary"></span>
-                        <a class="ml-1" href="#">Photography</a>
-                    </li>
-                </ul>
-                <a href="post-details.html" class="btn btn-primary">Read More <img
-                        src="images/arrow-right.png" alt=""></a>
-            </div>
-        </div>
-        <!-- end of widget-post-item -->
+        @endforeach
     </div>
     <!-- end of post-items widget -->
 </div>

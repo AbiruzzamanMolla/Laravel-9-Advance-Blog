@@ -22,7 +22,7 @@
   - [x] tags belongs to many
   - [x] short body
   - [x] body
-- [ ] Updated Towster and sweetalert 2 js
+- [x] Updated Towster and sweetalert 2 js for post only
 - [ ] Dynamic Frontend
   - [ ] Show category
   - [ ] show post
