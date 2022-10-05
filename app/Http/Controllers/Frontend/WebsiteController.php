@@ -27,4 +27,27 @@ class WebsiteController extends Controller
     public function contact(){
         return view('frontend.pages.contact');
     }
+
+    public function searchPosts($type, $search){
+        $query = Post::with('category', 'tags', 'user:id,name');
+        if($type == 'category' && !empty($search)){
+            $query->whereHas('category', function ($q) use ($search) {
+                $q->where('slug', 'LIKE', "%$search%");
+            });
+        }
+        if($type == 'tag' && !empty($search)){
+            $query->whereHas('tags', function ($q) use ($search) {
+                $q->where('slug', 'LIKE', "%$search%");
+            });
+        }
+        if($type == 'author' && !empty($search)){
+            $query->whereHas('user', function ($q) use ($search) {
+                $q->where('name', 'LIKE', "%$search%");
+            });
+        }
+        $posts = $query->latest('id')->paginate(10);
+        return view('frontend.index', [
+            'posts' => $posts
+        ]);
+    }
 }
