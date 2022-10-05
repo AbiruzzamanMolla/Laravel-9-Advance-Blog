@@ -65,7 +65,7 @@
                     </li>
                     <li class="d-inline-block">
                         <span class="fas fa-list-alt text-primary"></span>
-                        <a class="ml-1" href="#">{{ $latest_post->category->title }}</a>
+                        <a class="ml-1" href="{{ route('website.search.post', ['type' => 'category', 'search' => $latest_post->category->slug]) }}">{{ $latest_post->category->title }}</a>
                     </li>
                 </ul>
                 <a href="{{ route('website.post.details', $latest_post->slug) }}" class="btn btn-primary">Read More <img

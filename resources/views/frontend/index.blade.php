@@ -15,11 +15,11 @@
                     <ul class="post-meta mt-3">
                         <li class="d-inline-block mr-3">
                             <span class="fas fa-clock text-primary"></span>
-                            <a class="ml-1" href="#">{{ \Carbon\Carbon::parse($post->created_at)->format('d M, Y') }}</a>
+                            <a class="ml-1" href="javascript:void()">{{ \Carbon\Carbon::parse($post->created_at)->format('d M, Y') }}</a>
                         </li>
                         <li class="d-inline-block">
                             <span class="fas fa-list-alt text-primary"></span>
-                            <a class="ml-1" href="#">{{ $post->category->title }}</a>
+                            <a class="ml-1" href="{{ route('website.search.post', ['type' => 'category', 'search' => $post->category->slug]) }}">{{ $post->category->title }}</a>
                         </li>
                     </ul>
                     <p class="card-text my-4">{{ $post->description }}</p>

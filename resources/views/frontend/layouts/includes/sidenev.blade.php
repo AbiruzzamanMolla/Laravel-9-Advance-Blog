@@ -17,13 +17,12 @@
                 </li>
                 <li class="nav-item  accordion">
                     <div id="drop-menu" class="drop-menu collapse">
-                        <a class="d-block " href="index-2.html">Home 2</a>
-                        <a class="d-block " href="category.html">Category</a>
-                        <a class="d-block " href="post-details.html">Post Details</a>
-                        <a class="d-block " href="privacy.html">Privacy &amp; Policy</a>
+                        @foreach ($categories as $category)
+                        <a class="d-block " href="{{ route('website.search.post', ['type' => 'category', 'search' => $category->slug]) }}">{{ $category->title }}</a>
+                        @endforeach
                     </div>
                     <a class="nav-link text-white" href="#!" role="button" data-toggle="collapse"
-                        data-target="#drop-menu" aria-expanded="false" aria-controls="drop-menu">Pages</a>
+                        data-target="#drop-menu" aria-expanded="false" aria-controls="drop-menu">Category</a>
                 </li>
                 <li class="nav-item mt-3">
                     <select class="custom-select bg-transparent rounded-0 text-white shadow-none"

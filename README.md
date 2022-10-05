@@ -23,9 +23,11 @@
   - [x] short body
   - [x] body
 - [x] Updated Towster and sweetalert 2 js for post only
-- [ ] Dynamic Frontend
-  - [ ] Show category
-  - [ ] show post
-  - [ ] show single post
+- [x] Dynamic Frontend
+  - [] Show category
+  - [x] show post
+  - [x] show single post
+  - [ ] dynamic search bar
+  - [ ] post by category and tags
 - [ ] pages crud
 - [ ] site settings

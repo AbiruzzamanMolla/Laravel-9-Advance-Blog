@@ -8,7 +8,7 @@
         <ul class="post-meta mt-3 mb-4">
             <li class="d-inline-block mr-3">
                 <span class="fas fa-user text-primary"></span>
-                <a class="ml-1" href="javascript:void()">{{ $post->user->name }}</a>
+                <a class="ml-1" href="{{ route('website.search.post', ['type' => 'author', 'search' => $post->user->name]) }}">{{ $post->user->name }}</a>
             </li>
             <li class="d-inline-block mr-3">
                 <span class="fas fa-clock text-primary"></span>
@@ -17,7 +17,7 @@
             </li>
             <li class="d-inline-block">
                 <span class="fas fa-list-alt text-primary"></span>
-                <a class="ml-1" href="#">{{ $post->category->title }}</a>
+                <a class="ml-1" href="{{ route('website.search.post', ['type' => 'category', 'search' => $post->category->slug]) }}">{{ $post->category->title }}</a>
             </li>
         </ul>
 
@@ -43,7 +43,7 @@
                         @php
                             $class = $classes[array_rand($classes)]
                         @endphp
-                        <a class="btn {{ $class }} mt-1" href="#!"><span
+                        <a class="btn {{ $class }} mt-1" href="{{ route('website.search.post', ['type' => 'tag', 'search' => $tag->slug]) }}"><span
                                 class="fas fa-tag"></span>{{ $tag->title }}</a>
                     @empty
                         No Tags
