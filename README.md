@@ -29,5 +29,5 @@
   - [x] show single post
   - [x] dynamic search bar
   - [x] post by category and tags
-- [ ] site settings
+- [x] site settings
 - [ ] Login & Registation Page Redesign
