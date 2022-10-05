@@ -52,12 +52,12 @@
         <div class="nav-header">
             <div class="brand-logo">
                 <a href="{{ route('admin.dashboard') }}">
-                    <b class="logo-abbr"><img src="images/logo.png" alt=""> </b>
+                    <b class="logo-abbr"><img src="{{ $WebsiteSetting->image_url }}" alt=""> </b>
                     <span class="logo-compact"><img
-                            src="{{ asset('backend/images/logo-compact.png') }}"
+                            src="{{ $WebsiteSetting->image_url }}"
                             alt="admin-panel-logo"></span>
                     <span class="brand-title">
-                        <img src="{{ asset('backend/images/logo-text.png') }}" alt="">
+                        <img src="{{ $WebsiteSetting->image_url }}" alt="">
                     </span>
                 </a>
             </div>

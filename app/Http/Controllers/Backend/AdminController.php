@@ -3,6 +3,9 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Category;
+use App\Models\Post;
+use App\Models\Tag;
 use App\Models\User;
 use App\Rules\MatchOldPassword;
 use Illuminate\Http\Request;
@@ -12,7 +15,15 @@ class AdminController extends Controller
 {
     public function index()
     {
-        return view('backend.dashboard');
+        $data = [];
+        $data['total_posts'] = count(Post::all());
+        $data['total_categories'] = count(Category::all());
+        $data['total_tags'] = count(Tag::all());
+        $data['total_users'] = count(User::all());
+        $data['posts'] = Post::with('user:id,name', 'category', 'tags')->latest('updated_at')->take(10)->get();
+        $data['last_updated'] = Post::latest('updated_at')
+        ->first()->updated_at;
+        return view('backend.dashboard', $data);
     }
 
     public function profile()

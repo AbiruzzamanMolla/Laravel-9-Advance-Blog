@@ -117,14 +117,17 @@ Post
 @endsection
 
 @push('style')
-    <link href="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/css/bootstrap4-toggle.min.css"
+    <link
+        href="{{ asset('backend/plugins/bootstrap4-toggle@3.6.1/css/bootstrap4-toggle.min.css') }}"
         rel="stylesheet">
     <link href="{{ asset('backend/plugins/sweetalert2/dist/dist/sweetalert2.min.css') }}"
         rel="stylesheet">
 @endpush
 
 @push('scripts')
-    <script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
+    <script
+        src="{{ asset('backend/plugins/bootstrap4-toggle@3.6.1/css/bootstrap4-toggle.min.js') }}">
+    </script>
     <script src="{{ asset('backend/plugins/sweetalert2/dist/dist/sweetalert2.min.js') }}">
     </script>
     <script type="text/javascript">
