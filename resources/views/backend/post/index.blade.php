@@ -14,9 +14,9 @@ Post
                 <div class="card-header">
                     <h5 class="card-title card-text d-inline">All Posts</h5>
                     @permission('create.post')
-                    <a href="{{ route('admin.posts.create') }}"
-                        class="card-link float-right btn btn-success"><i class="fa fa-plus mr-1"></i> Create</a>
-                        @endpermission
+                        <a href="{{ route('admin.posts.create') }}"
+                            class="card-link float-right btn btn-success"><i class="fa fa-plus mr-1"></i> Create</a>
+                    @endpermission
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
@@ -77,19 +77,20 @@ Post
                                         <td>
                                             <span>
                                                 @permission('edit.post')
-                                                <a href="{{ route('admin.posts.edit', $post->slug) }}"
-                                                    class="btn btn-sm btn-success" data-toggle="tooltip"
-                                                    data-placement="top" title="" data-original-title="Edit">
-                                                    <i class="fa fa-pencil color-muted m-r-5"></i>
-                                                </a>
+                                                    <a href="{{ route('admin.posts.edit', $post->slug) }}"
+                                                        class="btn btn-sm btn-success" data-toggle="tooltip"
+                                                        data-placement="top" title="" data-original-title="Edit">
+                                                        <i class="fa fa-pencil color-muted m-r-5"></i>
+                                                    </a>
                                                 @endpermission
                                                 @permission('delete.post')
-                                                <button class="btn btn-sm btn-danger deleteButton" data-toggle="tooltip"
-                                                    data-placement="top" title="" data-original-title="Delete"
-                                                    data-url="{{ route('admin.posts.destroy', $post->slug) }}"
-                                                    data-token="{{ csrf_token() }}">
-                                                    <i class="fa fa-close color-danger"></i>
-                                                </button>
+                                                    <button class="btn btn-sm btn-danger deleteButton"
+                                                        data-toggle="tooltip" data-placement="top" title=""
+                                                        data-original-title="Delete"
+                                                        data-url="{{ route('admin.posts.destroy', $post->slug) }}"
+                                                        data-token="{{ csrf_token() }}">
+                                                        <i class="fa fa-close color-danger"></i>
+                                                    </button>
                                                 @endpermission
                                             </span>
                                         </td>
@@ -118,11 +119,14 @@ Post
 @push('style')
     <link href="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/css/bootstrap4-toggle.min.css"
         rel="stylesheet">
+    <link href="{{ asset('backend/plugins/sweetalert2/dist/dist/sweetalert2.min.css') }}"
+        rel="stylesheet">
 @endpush
 
 @push('scripts')
     <script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
-    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="{{ asset('backend/plugins/sweetalert2/dist/dist/sweetalert2.min.js') }}">
+    </script>
     <script type="text/javascript">
         $(".deleteButton").click(function (e) {
             e.preventDefault();
@@ -132,13 +136,16 @@ Post
         });
 
         function deleteConfirmation(URL, token) {
-            swal({
+            Swal.fire({
                 title: "Delete?",
                 text: "Please ensure and then confirm!",
                 type: "warning",
+                icon: 'warning',
                 showCancelButton: !0,
                 confirmButtonText: "Yes, delete it!",
                 cancelButtonText: "No, cancel!",
+                confirmButtonColor: '#d33',
+                cancelButtonColor: '#3085d6',
                 reverseButtons: !0
             }).then(function (e) {
                 if (e.value === true) {
