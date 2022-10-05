@@ -24,12 +24,12 @@ class RolesTableSeeder extends Seeder
                 'description' => 'Admin Role',
                 'level'       => 5,
             ],
-            [
-                'name'        => 'User',
-                'slug'        => 'user',
-                'description' => 'User Role',
-                'level'       => 1,
-            ],
+            // [
+            //     'name'        => 'User',
+            //     'slug'        => 'user',
+            //     'description' => 'User Role',
+            //     'level'       => 1,
+            // ],
             [
                 'name'        => 'Unverified',
                 'slug'        => 'unverified',
