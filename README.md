@@ -30,4 +30,4 @@
   - [x] dynamic search bar
   - [x] post by category and tags
 - [x] site settings
-- [ ] Login & Registation Page Redesign
+- [x] Login & Registation Page Redesign
