@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
 use App\Models\Post;
+use App\Models\WebsiteSetting;
 use Illuminate\Http\Request;
 
 class WebsiteController extends Controller

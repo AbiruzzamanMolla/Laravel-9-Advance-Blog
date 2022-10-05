@@ -1,7 +1,7 @@
 <aside>
     <div class="sidenav position-sticky d-flex flex-column justify-content-between">
         <a class="navbar-brand" href="{{ route('website.index') }}" class="logo">
-            <img src="{{ asset('frontend/images/logo.png') }}" alt="">
+            <img src="{{ asset($WebsiteSetting->site_logo) }}" alt="">
         </a>
         <!-- end of navbar-brand -->
         <div class="navbar navbar-dark my-4 p-0 font-primary">
@@ -37,22 +37,22 @@
 
         <ul class="list-inline nml-2">
             <li class="list-inline-item">
-                <a href="#!" class="text-white text-red-onHover pr-2">
+                <a href="{{ $WebsiteSetting->site_social_link_twitter }}" class="text-white text-red-onHover pr-2">
                     <span class="fab fa-twitter"></span>
                 </a>
             </li>
             <li class="list-inline-item">
-                <a href="#!" class="text-white text-red-onHover p-2">
+                <a href="{{ $WebsiteSetting->site_social_link_facebook }}" class="text-white text-red-onHover p-2">
                     <span class="fab fa-facebook-f"></span>
                 </a>
             </li>
             <li class="list-inline-item">
-                <a href="#!" class="text-white text-red-onHover p-2">
+                <a href="{{ $WebsiteSetting->site_social_link_instagram }}" class="text-white text-red-onHover p-2">
                     <span class="fab fa-instagram"></span>
                 </a>
             </li>
             <li class="list-inline-item">
-                <a href="#!" class="text-white text-red-onHover p-2">
+                <a href="{{ $WebsiteSetting->site_social_link_linkedin }}" class="text-white text-red-onHover p-2">
                     <span class="fab fa-linkedin-in"></span>
                 </a>
             </li>
