@@ -9,4 +9,5 @@ Route::name('website.')->group(function () {
     Route::get('/about', [WebsiteController::class, 'about'])->name('about');
     Route::get('/contact', [WebsiteController::class, 'contact'])->name('contact');
     Route::get('/posts/{type}/{search}', [WebsiteController::class, 'searchPosts'])->name('search.post');
+    Route::get('/posts', [WebsiteController::class, 'searchKeywordPosts'])->name('search.keyword.post');
 });

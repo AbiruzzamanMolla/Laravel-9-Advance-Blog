@@ -59,7 +59,7 @@
                 <ul class="post-meta mt-3 mb-4">
                     <li class="d-inline-block mr-3">
                         <span class="fas fa-clock text-primary"></span>
-                        <a class="ml-1" href="#">{{ \Carbon\Carbon::parse($post->created_at)->format('d M, Y') }}</a>
+                        <a class="ml-1" href="#">{{ \Carbon\Carbon::parse($latest_post->created_at)->format('d M, Y') }}</a>
                     </li>
                     <li class="d-inline-block">
                         <span class="fas fa-list-alt text-primary"></span>

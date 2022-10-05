@@ -50,4 +50,17 @@ class WebsiteController extends Controller
             'posts' => $posts
         ]);
     }
+
+    public function searchKeywordPosts(Request $request){
+        $query = Post::with('category');
+        if(!empty($request->keyword)){
+            $query->where('body', 'LIKE', "%{$request->keyword}%")->orWhere('title', 'LIKE', "%{$request->keyword}%")->orWhere('description', 'LIKE', "%{$request->keyword}%");
+        } else {
+            abort(404);
+        }
+        $posts = $query->latest('id')->paginate(10);
+        return view('frontend.index', [
+            'posts' => $posts
+        ]);
+    }
 }

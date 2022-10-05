@@ -46,10 +46,10 @@
             @if(!request()->routeIs('website.index'))
             <div class="row">
                 <div class="col-lg-5 col-md-8">
-                  <form class="search-form" action="#">
+                  <form class="search-form" action="{{ route('website.search.keyword.post') }}">
                     <div class="input-group">
-                      <input type="search" class="form-control bg-transparent shadow-none rounded-0"
-                        placeholder="Search here">
+                      <input type="search" name="keyword" class="form-control bg-transparent shadow-none rounded-0"
+                        placeholder="Search here" value="{{ old('keyword', request('keyword')) }}">
                       <div class="input-group-append">
                         <button class="btn" type="submit">
                           <span class="fas fa-search"></span>
