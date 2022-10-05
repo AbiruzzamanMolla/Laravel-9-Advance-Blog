@@ -112,8 +112,7 @@
         ***********************************-->
         <div class="footer">
             <div class="copyright">
-                <p>Copyright &copy; Designed & Developed by <a href="https://themeforest.net/user/quixlab">Quixlab</a>
-                    2018</p>
+                <p><span class="fa fa-copyright"></span> <span id="year"></span> All rights reserved by <a href="https://asliabir.github.io/">abir</a>.</p>
             </div>
         </div>
         <!--**********************************
