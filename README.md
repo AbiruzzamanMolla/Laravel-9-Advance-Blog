@@ -1,6 +1,6 @@
 ## Installation Process
 
-- Clone this repo `git clone https://github.com/asliabir/laravel-9-blog.git`
+- Clone this repo `git clone https://github.com/asliabir/Laravel-9-Advance-Blog.git`
 - Change Directory to `cd laravel-9-blog`
 - Create a database in your database server
 - Copy the .env.example file Windows: `copy .env.example .env` Linux: `cp .env.example .env`
