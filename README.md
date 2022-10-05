@@ -1,9 +1,9 @@
 ## ToDo
 
 - [x] Install Laravel and setup database
-- [x] Scafold frontend
+- [x] master frontend
 - [x] install auth
-- [x] scafold backend
+- [x] master backend
 - [x] role and permissions package
 - [x] Admin crud
 - [x] Category CRUD
@@ -29,5 +29,5 @@
   - [x] show single post
   - [x] dynamic search bar
   - [x] post by category and tags
-- [ ] pages crud
 - [ ] site settings
+- [ ] Login & Registation Page Redesign

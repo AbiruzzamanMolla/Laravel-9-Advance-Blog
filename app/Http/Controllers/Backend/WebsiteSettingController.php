@@ -15,7 +15,7 @@ class WebsiteSettingController extends Controller
      */
     public function index()
     {
-        //
+        return view('backend.setting.index');
     }
 
     /**
@@ -23,9 +23,28 @@ class WebsiteSettingController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function updateWebsite(Request $request)
     {
-        //
+        $request->validate([
+            'site_name' => 'required|max:255',
+            'site_logo' => 'nullable|image|mimes:jpg,png,jpeg,gif,svg|max:1024',
+            'site_subscribe_text' => 'required|max:255',
+            'site_contact_email' => 'required|max:255|email'
+        ]);
+        $WebsiteSetting = WebsiteSetting::first();
+        $posted = $WebsiteSetting->update($request->except('_token', '_method', 'site_logo'));
+        if ($request->hasFile('site_logo')) {
+            if($WebsiteSetting->site_logo !== 'frontend/images/logo.png'){
+                deletePhoto($WebsiteSetting->site_logo);
+            }
+            $site_logo =  uploadFile($request->site_logo, 'images/settings/');
+            $WebsiteSetting->update([
+                'site_logo' => $site_logo
+            ]);
+        }
+        session()->flash('website', true);
+        $posted ? flashSuccess('Settings Updated Successfully!') : flashError('Opps! Somethings went wrong!');
+        return back();
     }
 
     /**
@@ -34,53 +53,42 @@ class WebsiteSettingController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function updateAbout(Request $request)
     {
-        //
+        $request->validate([
+            'site_short_bio' => 'required|max:255',
+            'site_image_bio' => 'nullable|image|mimes:jpg,png,jpeg,gif,svg|max:1024',
+            'site_long_bio' => 'required'
+        ]);
+        $WebsiteSetting = WebsiteSetting::first();
+        $posted = $WebsiteSetting->update($request->except('_token', '_method', 'site_image_bio'));
+        if ($request->hasFile('site_image_bio')) {
+            if($WebsiteSetting->site_image_bio !== 'frontend/images/logo.png'){
+                deletePhoto($WebsiteSetting->site_image_bio);
+            }
+            $site_image_bio =  uploadFile($request->site_image_bio, 'images/settings/');
+            $WebsiteSetting->update([
+                'site_image_bio' => $site_image_bio
+            ]);
+        }
+        session()->flash('about', true);
+        $posted ? flashSuccess('Settings Updated Successfully!') : flashError('Opps! Somethings went wrong!');
+        return back();
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\WebsiteSetting  $websiteSetting
-     * @return \Illuminate\Http\Response
-     */
-    public function show(WebsiteSetting $websiteSetting)
+    public function updateSocial(Request $request)
     {
-        //
-    }
+        $request->validate([
+            'site_social_link_facebook' => 'required|max:255|url',
+            'site_social_link_twitter' => 'required|max:255|url',
+            'site_social_link_instagram' => 'required|max:255|url',
+            'site_social_link_linkedin' => 'required|max:255|url',
+        ]);
+        $WebsiteSetting = WebsiteSetting::first();
+        $posted = $WebsiteSetting->update($request->except('_token', '_method', 'site_image_bio'));
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\WebsiteSetting  $websiteSetting
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(WebsiteSetting $websiteSetting)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\WebsiteSetting  $websiteSetting
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, WebsiteSetting $websiteSetting)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\WebsiteSetting  $websiteSetting
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(WebsiteSetting $websiteSetting)
-    {
-        //
+        session()->flash('social', true);
+        $posted ? flashSuccess('Settings Updated Successfully!') : flashError('Opps! Somethings went wrong!');
+        return back();
     }
 }

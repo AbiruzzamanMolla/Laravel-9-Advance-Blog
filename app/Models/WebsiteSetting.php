@@ -9,7 +9,7 @@ class WebsiteSetting extends Model
 {
     use HasFactory;
 
-    protected $filled = [
+    protected $fillable = [
         'site_name',
         'site_logo',
         'site_subscribe_text',
