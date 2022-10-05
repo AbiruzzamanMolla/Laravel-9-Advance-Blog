@@ -24,10 +24,10 @@
   - [x] body
 - [x] Updated Towster and sweetalert 2 js for post only
 - [x] Dynamic Frontend
-  - [] Show category
+  - [x] Show category
   - [x] show post
   - [x] show single post
-  - [ ] dynamic search bar
-  - [ ] post by category and tags
+  - [x] dynamic search bar
+  - [x] post by category and tags
 - [ ] pages crud
 - [ ] site settings
