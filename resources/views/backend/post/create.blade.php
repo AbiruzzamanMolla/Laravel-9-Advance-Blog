@@ -91,8 +91,10 @@ Add Post
                         </select>
                         </div>
                         <div class="form-group">
+                            @permission('store.post')
                             <button class="btn btn-success" type="submit"><i class="fa fa-plus mr-1"></i>
                                 Create</button>
+                            @endpermission
                         </div>
                     </form>
                     <p class="card-text d-inline float-right"><small class="text-muted">Last created {{ $last_created->diffForHumans() }}</small>

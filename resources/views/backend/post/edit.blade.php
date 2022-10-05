@@ -92,8 +92,10 @@ Edit Post
                         </select>
                         </div>
                         <div class="form-group">
+                            @permission('update.post')
                             <button class="btn btn-success" type="submit"><i class="fa fa-refresh mr-1"></i>
                                 Update</button>
+                                @endpermission
                         </div>
                     </form>
                     <p class="card-text d-inline float-right"><small class="text-muted">Last updated {{ $post->updated_at->diffForHumans() }}</small>

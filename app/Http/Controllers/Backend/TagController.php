@@ -14,6 +14,7 @@ class TagController extends Controller
      */
     public function index()
     {
+        abortIf('view.tag');
         $tags = Tag::latest()->paginate(10);
         $last_created = Tag::latest('created_at')
         ->first()->created_at;
@@ -28,6 +29,7 @@ class TagController extends Controller
      */
     public function store(Request $request)
     {
+        abortIf('store.tag');
         $request->validate([
             'title' => 'required|unique:tags,title'
         ]);
@@ -56,6 +58,7 @@ class TagController extends Controller
      */
     public function edit(Tag $tag)
     {
+        abortIf('edit.tag');
         $last_updated = Tag::latest('updated_at')
         ->first()->updated_at;
         $tags = Tag::latest()->paginate(10);
@@ -75,6 +78,7 @@ class TagController extends Controller
      */
     public function update(Request $request, Tag $tag)
     {
+        abortIf('update.tag');
         $request->validate([
             'title' => 'required|unique:tags,title,'.$tag->id,
         ]);
@@ -93,6 +97,7 @@ class TagController extends Controller
      */
     public function destroy(Tag $tag)
     {
+        abortIf('delete.tag');
         $data = $tag->delete();
         $data ? flashSuccess('Tag Deleted!') : '';
         return response()->json([

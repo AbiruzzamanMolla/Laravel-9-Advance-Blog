@@ -13,8 +13,10 @@ Post
             <div class="card">
                 <div class="card-header">
                     <h5 class="card-title card-text d-inline">All Posts</h5>
+                    @permission('create.post')
                     <a href="{{ route('admin.posts.create') }}"
                         class="card-link float-right btn btn-success"><i class="fa fa-plus mr-1"></i> Create</a>
+                        @endpermission
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
@@ -74,17 +76,21 @@ Post
                                         </td>
                                         <td>
                                             <span>
+                                                @permission('edit.post')
                                                 <a href="{{ route('admin.posts.edit', $post->slug) }}"
                                                     class="btn btn-sm btn-success" data-toggle="tooltip"
                                                     data-placement="top" title="" data-original-title="Edit">
                                                     <i class="fa fa-pencil color-muted m-r-5"></i>
                                                 </a>
+                                                @endpermission
+                                                @permission('delete.post')
                                                 <button class="btn btn-sm btn-danger deleteButton" data-toggle="tooltip"
                                                     data-placement="top" title="" data-original-title="Delete"
                                                     data-url="{{ route('admin.posts.destroy', $post->slug) }}"
                                                     data-token="{{ csrf_token() }}">
                                                     <i class="fa fa-close color-danger"></i>
                                                 </button>
+                                                @endpermission
                                             </span>
                                         </td>
                                     </tr>

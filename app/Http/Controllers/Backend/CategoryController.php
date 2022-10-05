@@ -9,6 +9,7 @@ class CategoryController extends Controller
 {
     public function index()
     {
+        abortIf('view.category');
         $categories = Category::latest()->paginate(10);
         $last_created = Category::latest('created_at')
         ->first()->created_at;
@@ -17,6 +18,7 @@ class CategoryController extends Controller
 
     public function store(Request $request)
     {
+        abortIf('store.category');
         $request->validate([
             'title' => 'required|unique:categories,title'
         ]);
@@ -45,6 +47,7 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
+        abortIf('edit.category');
         $last_updated = Category::latest('updated_at')
         ->first()->updated_at;
         $categories = Category::latest()->paginate(10);
@@ -64,6 +67,7 @@ class CategoryController extends Controller
      */
     public function update(Request $request, Category $category)
     {
+        abortIf('update.category');
         $request->validate([
             'title' => 'required|unique:categories,title,'.$category->id,
         ]);
@@ -82,6 +86,7 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
+        abortIf('delete.category');
         $data = $category->delete();
         $data ? flashSuccess('Category Deleted!') : '';
         return response()->json([

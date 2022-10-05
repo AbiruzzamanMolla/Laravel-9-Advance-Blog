@@ -12,6 +12,7 @@ class PostController extends Controller
 {
     public function index()
     {
+        abortIf('view.post');
         $posts = Post::with('user:id,name', 'category', 'tags')->latest('id')->paginate(10);
         $last_updated = Post::latest('updated_at')
         ->first()->updated_at;
@@ -29,6 +30,7 @@ class PostController extends Controller
      */
     public function create()
     {
+        abortIf('create.post');
         $categories = Category::all();
         $tags = Tag::all();
         $last_created = Post::latest('created_at')
@@ -48,6 +50,7 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
+        abortIf('store.post');
         $request->validate([
             'title' => 'required|unique:posts,title',
             'category_id' => 'required',
@@ -101,6 +104,7 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
+        abortIf('edit.post');
         $categories = Category::all();
         $tags = Tag::all();
         return view('backend.post.edit',[
@@ -119,7 +123,7 @@ class PostController extends Controller
      */
     public function update(Request $request, Post $post)
     {
-        // return $request;
+        abortIf('update.post');
         $request->validate([
             'title' => 'required|unique:posts,title,'.$post->id,
             'category_id' => 'required',
@@ -160,6 +164,7 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
+        abortIf('delete.post');
         $data = $post->delete();
         $data ? deletePhoto($post->cover) : '';
         $data ? flashSuccess('Post Deleted!') : '';
@@ -171,6 +176,7 @@ class PostController extends Controller
 
     public function updateStatus(Request $request)
     {
+        abortIf('update.post.status');
         $post = Post::whereSlug($request->slug)->first();
         $post->status = $request->status;
         $data = $post->save();

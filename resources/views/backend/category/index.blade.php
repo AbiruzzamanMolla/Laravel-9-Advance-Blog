@@ -42,17 +42,21 @@ Category
                                         <td>{{ $category->slug }}</td>
                                         <td>
                                             <span>
+                                                @permission('edit.category')
                                                 <a href="{{ route('admin.categories.edit', $category->slug) }}"
                                                     class="btn btn-success" data-toggle="tooltip" data-placement="top"
                                                     title="" data-original-title="Edit">
                                                     <i class="fa fa-pencil color-muted m-r-5"></i>
                                                 </a>
+                                                @endpermission
+                                                @permission('delete.category')
                                                 <button class="btn btn-danger deleteButton" data-toggle="tooltip"
                                                     data-placement="top" title="" data-original-title="Delete"
                                                     data-url="{{ route('admin.categories.destroy', $category->slug) }}"
                                                     data-token="{{ csrf_token() }}">
                                                     <i class="fa fa-close color-danger"></i>
                                                 </button>
+                                                @endpermission
                                             </span>
                                         </td>
                                     </tr>
@@ -89,8 +93,10 @@ Category
                                 @enderror
                             </div>
                             <div class="form-group">
+                                @permission('store.category')
                                 <button class="btn btn-success" type="submit"><i class="fa fa-plus mr-1"></i>
                                     Create</button> </div>
+                                @endpermission
                         </form>
                         <p class="card-text d-inline"><small class="text-muted">Last created
                                 {{ $last_created->diffForHumans() }}</small>
@@ -118,10 +124,12 @@ Category
                                 @enderror
                             </div>
                             <div class="form-group">
+                                @permission('update.category')
                                 <button class="btn btn-success" type="submit">
                                     <i class="fa fa-refresh mr-1"></i>
                                     Update
                                 </button>
+                                @endpermission
                             </div>
                         </form>
                         <p class="card-text d-inline"><small class="text-muted">Last Updated

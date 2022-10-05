@@ -42,17 +42,21 @@ Tag
                                         <td>{{ $tag->slug }}</td>
                                         <td>
                                             <span>
+                                                @permission('edit.tag')
                                                 <a href="{{ route('admin.tags.edit', $tag->slug) }}"
                                                     class="btn btn-success" data-toggle="tooltip" data-placement="top"
                                                     title="" data-original-title="Edit">
                                                     <i class="fa fa-pencil color-muted m-r-5"></i>
                                                 </a>
+                                                @endpermission
+                                                @permission('delete.tag')
                                                 <button class="btn btn-danger deleteButton" data-toggle="tooltip"
                                                     data-placement="top" title="" data-original-title="Delete"
                                                     data-url="{{ route('admin.tags.destroy', $tag->slug) }}"
                                                     data-token="{{ csrf_token() }}">
                                                     <i class="fa fa-close color-danger"></i>
                                                 </button>
+                                                @endpermission
                                             </span>
                                         </td>
                                     </tr>
@@ -89,8 +93,10 @@ Tag
                                 @enderror
                             </div>
                             <div class="form-group">
+                                @permission('store.tag')
                                 <button class="btn btn-success" type="submit"><i class="fa fa-plus mr-1"></i>
                                     Create</button>
+                                @endpermission
                             </div>
                         </form>
                         <p class="card-text d-inline"><small class="text-muted">Last created
@@ -117,7 +123,9 @@ Tag
                                 @enderror
                             </div>
                             <div class="form-group">
+                                @permission('update.tag')
                                 <button class="btn btn-success" type="submit"><i class="fa fa-refresh mr-1"></i> Update</button>
+                                @endpermission
                             </div>
                         </form>
                         <p class="card-text d-inline"><small class="text-muted">Last Updated
