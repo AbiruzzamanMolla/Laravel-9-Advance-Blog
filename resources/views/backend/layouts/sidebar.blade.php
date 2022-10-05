@@ -38,9 +38,21 @@
             </li> --}}
             <li class="nav-label">Settings</li>
             <li
+                class="{{ request()->routeIs('admin.contact.us') ? 'active' : '' }}">
+                <a href="{{ route('admin.contact.us') }}" aria-expanded="false">
+                    <i class="fa fa-envelope "></i><span class="nav-text">Contact Mails</span>
+                </a>
+            </li>
+            <li
                 class="{{ request()->routeIs('admin.settings.*') ? 'active' : '' }}">
                 <a href="{{ route('admin.settings.index') }}" aria-expanded="false">
                     <i class="fa fa-cogs"></i><span class="nav-text">Website Settings</span>
+                </a>
+            </li>
+            <li
+                class="{{ request()->routeIs('laravelroles::.*') ? 'active' : '' }}">
+                <a href="{{ route('laravelroles::roles.index') }}" aria-expanded="false">
+                    <i class="fa fa-bolt"></i><span class="nav-text">Role & Permission</span>
                 </a>
             </li>
         </ul>

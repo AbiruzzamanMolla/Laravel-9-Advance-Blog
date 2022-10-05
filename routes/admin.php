@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Backend\AdminController;
 use App\Http\Controllers\Backend\CategoryController;
+use App\Http\Controllers\Backend\ContactController;
 use App\Http\Controllers\Backend\PostController;
 use App\Http\Controllers\Backend\TagController;
 use App\Http\Controllers\Backend\WebsiteSettingController;
@@ -37,4 +38,6 @@ Route::middleware('auth', 'is_admin')->name('admin.')->prefix('admin')->group(fu
         Route::put('/about/update', 'updateAbout')->name('update.about');
         Route::put('/social/update', 'updateSocial')->name('update.social');
     });
+    // contact us mails
+    Route::get('/contact-us', [ContactController::class, 'index'])->name('contact.us')->middleware('role:admin');
 });

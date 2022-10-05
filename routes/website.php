@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Backend\ContactController;
 use App\Http\Controllers\Frontend\WebsiteController;
 use Illuminate\Support\Facades\Route;
 
@@ -10,4 +11,5 @@ Route::name('website.')->group(function () {
     Route::get('/contact', [WebsiteController::class, 'contact'])->name('contact');
     Route::get('/posts/{type}/{search}', [WebsiteController::class, 'searchPosts'])->name('search.post');
     Route::get('/posts', [WebsiteController::class, 'searchKeywordPosts'])->name('search.keyword.post');
+    Route::post('/contact-us', [ContactController::class, 'store'])->name('contact.store');
 });
