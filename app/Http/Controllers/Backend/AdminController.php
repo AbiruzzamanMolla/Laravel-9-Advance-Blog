@@ -48,14 +48,14 @@ class AdminController extends Controller
             'bio' => 'nullable|max:255',
             'image' => 'nullable|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
         ]);
-        $admin->update($request->except('image', '_token'));
+        $data = $admin->update($request->except('image', '_token'));
         if ($request->hasFile('image')) {
             $image =  uploadImage($request->image, $admin->image);
             $admin->update([
                 'image' => $image,
             ]);
         }
-        flashSuccess('Profile Updated Successfully!');
+        if($data) flashSuccess('Profile Updated Successfully!');
         return back();
     }
 
@@ -78,8 +78,8 @@ class AdminController extends Controller
             ]
         );
 
-        User::find(auth()->user()->id)->update(['password' => bcrypt($request->new_password)]);
-        flashSuccess('Password Updated Successfully!');
+        $data = User::find(auth()->user()->id)->update(['password' => bcrypt($request->new_password)]);
+        if($data) flashSuccess('Password Updated Successfully!');
         return back();
     }
 }

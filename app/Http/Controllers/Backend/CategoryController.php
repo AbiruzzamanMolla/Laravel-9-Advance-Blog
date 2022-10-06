@@ -29,17 +29,6 @@ class CategoryController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Category  $category
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Category $category)
-    {
-        //
-    }
-
-    /**
      * Show the form for editing the specified resource.
      *
      * @param  \App\Models\Category  $category
@@ -88,7 +77,7 @@ class CategoryController extends Controller
     {
         abortIf('delete.category');
         $data = $category->delete();
-        $data ? flashSuccess('Category Deleted!') : '';
+        if($data) flashSuccess('Category Deleted!');
         return response()->json([
             'message' => 'Category deleted successfully!',
             'success' => $data

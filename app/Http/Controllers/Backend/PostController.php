@@ -81,19 +81,8 @@ class PostController extends Controller
             $post->tags()->sync($request->tags);
         }
 
-        flashSuccess('Post Created Successfully!');
+        if($post) flashSuccess('Post Created Successfully!');
         return back();
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Post  $post
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Post $post)
-    {
-        //
     }
 
     /**
@@ -166,10 +155,11 @@ class PostController extends Controller
     {
         abortIf('delete.post');
         $data = $post->delete();
-        $data ? deletePhoto($post->cover) : '';
-        $data ? flashSuccess('Post Deleted!') : '';
+        if($data) deletePhoto($post->cover);
+        if($data) flashSuccess('Post Deleted!');
+        $msg = $data ? 'Post deleted successfully' : 'Post Deleting Failed!';
         return response()->json([
-            'message' => 'Post deleted successfully!',
+            'message' => $msg,
             'success' => $data
         ]);
     }

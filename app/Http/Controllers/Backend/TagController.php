@@ -40,17 +40,6 @@ class TagController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Tag  $tag
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Tag $tag)
-    {
-        //
-    }
-
-    /**
      * Show the form for editing the specified resource.
      *
      * @param  \App\Models\Tag  $tag
@@ -99,9 +88,10 @@ class TagController extends Controller
     {
         abortIf('delete.tag');
         $data = $tag->delete();
-        $data ? flashSuccess('Tag Deleted!') : '';
+        if($data) flashSuccess('Tag Deleted!');
+        $msg = $data ? 'Tag deleted successfully' : 'Tag Deleting Failed!';
         return response()->json([
-            'message' => 'Tag deleted successfully!',
+            'message' => $msg,
             'success' => $data
         ]);
     }
