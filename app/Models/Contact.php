@@ -20,8 +20,17 @@ class Contact extends Model
 
         static::created(function ($item) {
 
-            $adminEmail = "your_admin_email@gmail.com";
+            $adminEmail = website()->site_contact_email;
             Mail::to($adminEmail)->send(new ContactMail($item));
         });
+    }
+
+    protected $appends = [
+        'fill_name'
+    ];
+
+    public function getFullNameAttribute()
+    {
+        return $this->first_name." ".$this->last_name;
     }
 }

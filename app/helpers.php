@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\WebsiteSetting;
 use Illuminate\Support\Facades\Storage;
 
 function uploadImage(?object $image, string $oldImage = null){
@@ -77,4 +78,8 @@ function deletePhoto(?string $image)
     if ($imageExists) {
         @unlink($image);
     }
+}
+
+function website(){
+    return WebsiteSetting::first();
 }
