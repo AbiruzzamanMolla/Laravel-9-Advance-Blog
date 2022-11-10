@@ -17,7 +17,7 @@
 - Email: `admin@mail.com`
 - Password: `password`
 ## Preview
-[![Watch the video](https://img.youtube.com/vi/ZM4GL_HgRwo/maxresdefault.jpg)](https://youtu.be/ZM4GL_HgRwo)
+[![Watch the video](https://img.youtube.com/vi/OO3zP2DYlRs/maxresdefault.jpg)](https://youtu.be/OO3zP2DYlRs)
 
 
 
